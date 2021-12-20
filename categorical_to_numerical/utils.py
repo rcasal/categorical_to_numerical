@@ -17,7 +17,7 @@ def eval_algorithms(X, y,
                     #categorical_preprocessors={'OHE': OneHotEncoder(handle_unknown="ignore")}, 
                     categorical_preprocessors={'OHE': 'one_hot_encoder'},
                     numerical_preprocessors={'StandarScaler': StandardScaler()},
-                    sampling_methods=['noSampling'],
+                    sampling_methods=[],
                     clfs={'Logistic regression': LogisticRegression(max_iter=500)},
                     fillnan = True
                     ):
@@ -136,8 +136,5 @@ def sampling(X_train,y_train, categorical_columns, method='smote'):
   if method == 'smote':
     sm = SMOTENC(categorical_features=categorical_columns_index, sampling_strategy = 'not majority',random_state=0)
     X_train_samp, y_train_samp = sm.fit_resample(X_train, y_train)
-    
-  if method == 'noSampling':
-    X_train_samp, y_train_samp = X_train, y_train
-
+   
   return X_train_samp, y_train_samp
